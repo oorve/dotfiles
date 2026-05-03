@@ -3,6 +3,7 @@
 **/.zsh_history
 **/.zsh_sessions/
 **/.zshrc.zwc
+**/.zcompdump
 **/configstore/
 **/prompts-library-db.0.mdb/
 **/lazy-lock.json

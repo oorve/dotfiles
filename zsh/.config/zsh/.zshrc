@@ -8,17 +8,20 @@ bindkey -d
 bindkey -e
 
 # homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+[[ "$(uname)" == "Darwin" ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# 補完システムの初期化
+autoload -Uz compinit
+compinit
 
 # antigen
+ANTIGEN_CACHE=false
 source $HOME/.local/bin/antigen.zsh
 
 # Load the oh-my-zsh's library
 antigen use oh-my-zsh
 
 antigen bundles <<EOBUNDLES
-    # Bundles from the default repo (robbyrussell's oh-my-zsh)
-    git
     # Syntax highlighting bundle.
     zsh-users/zsh-syntax-highlighting
     # Fish-like auto suggestions
@@ -30,9 +33,6 @@ antigen bundles <<EOBUNDLES
     # abbr
     olets/zsh-abbr@main
 EOBUNDLES
-
-# Load the theme
-antigen theme robbyrussell
 
 # Tell antigen that you're done
 antigen apply
@@ -55,5 +55,10 @@ abbr -S gcm='git commit' >>/dev/null
 abbr -S gmg='git merge' >>/dev/null
 abbr -S gpsh='git push' >>/dev/null
 abbr -S lg='lazygit' >>/dev/null
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 eval "$(starship init zsh)"
