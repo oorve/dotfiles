@@ -1,0 +1,8 @@
+.DS_Store
+**/.DS_Store
+**/.zsh_history
+**/.zsh_sessions/
+**/.zshrc.zwc
+**/configstore/
+**/prompts-library-db.0.mdb/
+**/lazy-lock.json

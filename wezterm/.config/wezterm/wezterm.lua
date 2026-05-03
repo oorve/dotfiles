@@ -4,13 +4,13 @@ local config = wezterm.config_builder()
 config.automatically_reload_config = true
 config.font_size = 12.0
 config.use_ime = true
-config.macos_window_background_blur = 20
+config.macos_window_background_blur = 0
 
 ----------------------------------------------------
 -- Colors
 ----------------------------------------------------
 config.color_scheme = "nord"
-config.window_background_opacity = 0.85
+config.window_background_opacity = 0.80
 
 ----------------------------------------------------
 -- font
