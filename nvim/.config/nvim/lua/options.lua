@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   group = vim.api.nvim_create_augroup('buffer_set_options', {}),
   callback = function()
     -- swapfile作成を無効化
-    vim.api.nvim_buf_set_option(0, 'swapfile', true)
+    vim.api.nvim_buf_set_option(0, 'swapfile', false)
     -- tab幅
     vim.api.nvim_buf_set_option(0, 'tabstop', 2)
     -- tabをスペースに変換
