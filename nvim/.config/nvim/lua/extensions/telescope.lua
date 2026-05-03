@@ -3,6 +3,9 @@ local themes = require 'telescope.themes'
 
 telescope.setup {
   defaults = {
+    preview = {
+      treesitter = false,
+    },
     mappings = {
       i = {
         ['<C-h>'] = 'which_key',

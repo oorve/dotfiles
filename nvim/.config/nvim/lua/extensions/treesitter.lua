@@ -1,36 +1,16 @@
-require("nvim-treesitter.configs").setup({
-  ensure_installed = {
-    "bash",
-    "comment",
-    "lua",
-    "vim",
-    "vimdoc",
-    "markdown",
-    "markdown_inline",
-  },
-  sync_install = false,
-  auto_install = true,
-  highlight = {
-    enable = true,
-    disable = function(lang, buf)
-      local max_filesize = 100 * 1024 -- 100 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
+-- nvim-treesitter v1.0 API
+require("nvim-treesitter").setup()
+
+-- ファイルを開いたときにtreesitterハイライトを有効化
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(args)
+    local ok = pcall(vim.treesitter.start, args.buf)
+    if not ok then
+      -- パーサーが未インストールの場合はインストール
+      local lang = vim.treesitter.language.get_lang(args.match)
+      if lang then
+        pcall(require("nvim-treesitter.install").install, lang)
       end
-    end,
-    additional_vim_regex_highlighting = false,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-  indent = {
-    enable = true,
-  },
+    end
+  end,
 })

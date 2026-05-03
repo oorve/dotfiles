@@ -49,6 +49,11 @@ vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<CR>', { desc = "フ
 -- ",fg" (Live Grep): プロジェクト内の全ファイルからテキストを全文検索
 vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', { desc = "全文検索 (Grep)" })
 
+-- ",fG" (Find hidden): 隠しファイル(.config等)を含む全文検索
+vim.keymap.set('n', '<leader>fG', function()
+  require('telescope.builtin').live_grep({ additional_args = { '--hidden' } })
+end, { desc = "全文検索 (隠しファイル含む)" })
+
 -- ",fb" (Find Buffers): 今開いているファイルの一覧を表示して切り替え
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = "開いているバッファを検索" })
 
